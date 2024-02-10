@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Be My Valentine!</title>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1 class="header_text">Will You Be My Valentine Babee?</h1>
+        </div>
+        <div class="gif_container">
+            <img src="akirambow-spoiled-rabbit.gif">
+        </div>
+        <div class="buttons">
+            <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
+            <button class="btn" id="noButton" onmouseover="moveButton(event)">No</button>
+        </div>
+    </div>
+    <script>
+        if ('ontouchstart' in window) {
+          // This is a mobile device
+          // Load mobile-specific script
+          function nextPage() {
+                        window.location.href = "yes.html";
+                    }
+                    
+                    function moveButton() {
+    var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
+    var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
+    document.getElementById('noButton').style.left = x + 'px';
+    document.getElementById('noButton').style.top = y + 'px';
+
+    // Lines 136 and 137: Update the position of the "No" button
+    var noButton = document.getElementById('noButton');
+    noButton.style.transition = 'transform 0.5s ease';
+}
+
+
+        }
+          else {
+          // This is a PC or a device with a mouse pointer
+          // Load PC-specific script
+          
+        function nextPage() {
+            window.location.href = "yes.html";
+        }
+
+        function moveButton(event) {
+            var yesButton = document.getElementById('yesButton');
+            var noButton = document.getElementById('noButton');
+
+            // Get the current position of the pointer
+            var pointerX = event.clientX;
+            var pointerY = event.clientY;
+
+            // Calculate the new position for the Yes button
+            var x = pointerX - yesButton.offsetWidth / 2;
+            var y = pointerY - yesButton.offsetHeight / 2;
+
+            // Set the position of the Yes button
+            yesButton.style.left = Math.max(0, Math.min(window.innerWidth - yesButton.offsetWidth, x)) + 'px';
+            yesButton.style.top = Math.max(0, Math.min(window.innerHeight - yesButton.offsetHeight, y)) + 'px';
+
+            // Move the No button away (similar to the original behavior)
+            var newX = Math.random() * (window.innerWidth - noButton.offsetWidth) - 85;
+            var newY = Math.random() * (window.innerHeight - noButton.offsetHeight) - 48;
+            noButton.style.left = Math.max(0, Math.min(window.innerWidth - noButton.offsetWidth, newX)) + 'px';
+            noButton.style.top = Math.max(0, Math.min(window.innerHeight - noButton.offsetHeight, newY)) + 'px';
+        }}
+    </script>
+</body>
+</html>
